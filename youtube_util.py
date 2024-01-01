@@ -2,20 +2,19 @@ from pytube import YouTube
 import os
 
 
-def downloadVideoAsAudio():
+def download_video_as_audio(video_url):
     # url input from user
-    yt = YouTube(str(input("Enter the URL of the video you want to download: \n>> ")))
+    yt = YouTube(str(video_url))
 
     # extract only audio
     video = yt.streams.filter(only_audio=True).first()
 
     # check for destination to save file
-    print("Enter the destination (leave blank for current directory)")
-    dest_dir = str(input(">> ")) or '.'
+    dest_dir = 'audios'
 
     # download the file
     out_file = video.download(output_path=dest_dir)
-
+    print('downloading video')
     # save the file
     base, ext = os.path.splitext(out_file)
     new_name = base + '.mp3'
@@ -24,3 +23,5 @@ def downloadVideoAsAudio():
 
     # result of success
     print(yt.title + " has been successfully downloaded.")
+
+    return new_name

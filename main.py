@@ -1,16 +1,24 @@
-# # This is a sample Python script.
-#
-# # Press Shift+F10 to execute it or replace it with your code.
-# # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-#
-#
-# def print_hi(name):
-#     # Use a breakpoint in the code line below to debug your script.
-#     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-#
-#
-# # Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#     print_hi('PyCharm')
-#
-# # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+from pytube import YouTube
+import os
+
+# url input from user
+yt = YouTube(str(input("Enter the URL of the video you want to download: \n>> ")))
+
+# extract only audio
+video = yt.streams.filter(only_audio=True).first()
+
+# check for destination to save file
+print("Enter the destination (leave blank for current directory)")
+dest_dir = str(input(">> ")) or '.'
+
+# download the file
+out_file = video.download(output_path=dest_dir)
+
+# save the file
+base, ext = os.path.splitext(out_file)
+new_name = base + '.mp3'
+
+os.rename(out_file, new_name)
+
+# result of success
+print(yt.title + " has been successfully downloaded.")

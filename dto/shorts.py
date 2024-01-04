@@ -22,3 +22,12 @@ class ShortsTextConverted:
     transcript: str
 
 
+@dataclass
+class ShortsSummarized:
+    id: str
+    title: str
+    description: str
+    file_name: str
+    keywords: list
+    url: str
+    summary: str

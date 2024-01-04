@@ -19,9 +19,10 @@ def download_video_as_audio(video_url):
     os.rename(out_file, new_name)
     print(yt.title + " has been successfully downloaded.")
 
-    return ShortsDownloaded(id=id,
-                  title=yt.title,
-                  description=yt.description,
-                  file_name=new_name,
-                  keywords=yt.keywords,
-                  url=video_url)
+    return ShortsDownloaded(
+        id=id,
+        title=yt.title,
+        description=yt.description,
+        file_name=new_name,
+        keywords=yt.keywords,
+        url=video_url)

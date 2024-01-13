@@ -12,7 +12,8 @@ client = OpenAI(api_key=API_KEY)
 def summarize_short(shorts):
     shorts_json = json.dumps(asdict(shorts), ensure_ascii=False)
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-1106",
+        response_format={"type": "json_object"},
         messages=[
             {"role": "user", "content": shorts_json},
             {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR"]}
@@ -23,7 +24,8 @@ def summarize_short(shorts):
 
 def summarize_short_tmp():
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-1106",
+        response_format={"type": "json_object"},
         messages=[
             {"role": "user", "content": SHORTS_EXAMPLE["JAPAN_TRAVEL"]},
             {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR"]}
@@ -32,4 +34,4 @@ def summarize_short_tmp():
     print(completion)
 
 
-# summarize_short_tmp()
+summarize_short_tmp()

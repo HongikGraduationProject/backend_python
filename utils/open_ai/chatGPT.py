@@ -19,7 +19,7 @@ def summarize_short(shorts):
             {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR"]}
         ]
     )
-    print(completion)
+    return completion.choices[0].message.content
 
 
 def summarize_short_tmp():
@@ -34,4 +34,4 @@ def summarize_short_tmp():
     print(completion)
 
 
-summarize_short_tmp()
+# summarize_short_tmp()

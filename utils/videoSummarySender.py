@@ -23,15 +23,15 @@ class Publisher:
                                                                  credentials=self.__cred))
 
     def send_summary(self, url):
-        shorts = yt.download_video_as_audio(url)
-        print(shorts)
-        audio_converted = whisper.convert_audio(shorts)
-        print(json.dumps(asdict(audio_converted), ensure_ascii=False))
-        chatGPT.summarize_short(audio_converted)
+        video_info = yt.download_video_as_audio(url)
+        print(video_info)
+        text_converted = whisper.convert_audio(video_info)
+        print(json.dumps(asdict(text_converted), ensure_ascii=False))
+        summarized_video = chatGPT.summarize_short(text_converted)
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],
             routing_key=MQ['SUMMARY_ROUTING_KEY'],
-            body=json.dumps({"url": url + "dfsddf"})
+            body=json.dumps({"url": summarized_video + "dfsddf"})
         )
 
     def close_connection(self):

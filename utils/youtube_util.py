@@ -15,7 +15,6 @@ def download_video_as_audio(video_url, uuid):
     new_name = base + '.mp3'
 
     os.rename(out_file, new_name)
-    print(yt.title + " has been successfully downloaded.")
 
     return ShortsDownloaded(
         uuid=uuid,

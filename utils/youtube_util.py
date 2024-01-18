@@ -1,18 +1,16 @@
 from pytube import YouTube
 from dto.shorts import ShortsDownloaded
-import uuid
 import os
 
 
-def download_video_as_audio(video_url):
+def download_video_as_audio(video_url, uuid):
     yt = YouTube(str(video_url))
 
     video = yt.streams.filter(only_audio=True).first()
 
     output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios')
 
-    id = str(uuid.uuid1())
-    out_file = video.download(output_path=output_directory, filename=id)
+    out_file = video.download(output_path=output_directory, filename=uuid)
     base, ext = os.path.splitext(out_file)
     new_name = base + '.mp3'
 
@@ -20,7 +18,7 @@ def download_video_as_audio(video_url):
     print(yt.title + " has been successfully downloaded.")
 
     return ShortsDownloaded(
-        id=id,
+        uuid=uuid,
         title=yt.title,
         description=yt.description,
         file_name=new_name,

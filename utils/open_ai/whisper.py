@@ -15,7 +15,7 @@ def convert_audio(downloaded_shorts):
     print(transcript)
     print(type(transcript))
     return ShortsTextConverted(
-        id=downloaded_shorts.id,
+        uuid=downloaded_shorts.uuid,
         title=downloaded_shorts.title,
         description=downloaded_shorts.description,
         file_name=downloaded_shorts.file_name,

@@ -18,10 +18,12 @@ class Consumer:
 
     @staticmethod
     def on_message(channel, method_frame, header_frame, body):
-        url = json.loads(body.decode('utf-8'))['url']
-        print(url)
+        # url = json.loads(body.decode('utf-8'))['url']
+        body_json = json.loads(body.decode('utf-8'))
+        print(body_json['url'])
+        print(body_json['uuid'])
         print('Received %s' % body)
-        publisher.send_summary(url)
+        publisher.send_summary(body_json['url'], body_json['uuid'])
         return
 
     def main(self):

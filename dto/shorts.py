@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ShortsDownloaded:
-    id: str
+    uuid: str
     title: str
     description: str
     file_name: str
@@ -13,7 +13,7 @@ class ShortsDownloaded:
 
 @dataclass
 class ShortsTextConverted:
-    id: str
+    uuid: str
     title: str
     description: str
     file_name: str
@@ -24,10 +24,9 @@ class ShortsTextConverted:
 
 @dataclass
 class ShortsSummarized:
-    id: str
+    uuid: str
     title: str
     description: str
-    file_name: str
     keywords: list
     url: str
     summary: str

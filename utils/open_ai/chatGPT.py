@@ -28,21 +28,7 @@ def summarize_short(text_converted):
         description=text_converted.description,
         keywords=summary_json["keywords"],
         url=text_converted.url,
-        summary=summary_json["summary"]
+        summary=summary_json["summary"],
+        address=summary_json["address"]
     )
-    # return completion.choices[0].message.content
 
-
-def summarize_short_tmp():
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo-1106",
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "user", "content": SHORTS_EXAMPLE["JAPAN_TRAVEL"]},
-            {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR"]}
-        ]
-    )
-    print(completion)
-
-
-# summarize_short_tmp()

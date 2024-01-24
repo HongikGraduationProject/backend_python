@@ -3,7 +3,7 @@ from dto.shorts import ShortsDownloaded
 import os
 
 
-def download_video_as_audio(video_url, uuid):
+def download_shorts_as_audio(video_url, uuid):
     yt = YouTube(str(video_url))
 
     video = yt.streams.filter(only_audio=True).first()

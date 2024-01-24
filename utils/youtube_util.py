@@ -12,14 +12,15 @@ def download_shorts_as_audio(video_url, uuid):
 
     out_file = video.download(output_path=output_directory, filename=uuid)
     base, ext = os.path.splitext(out_file)
-    new_name = base + '.mp3'
+    new_filename = base + '.mp3'
 
-    os.rename(out_file, new_name)
-
+    os.rename(out_file, new_filename)
     return ShortFormDownLoaded(
         uuid=uuid,
         title=yt.title,
         description=yt.description,
-        file_name=new_name,
+        file_name=new_filename,
         keywords=yt.keywords,
         url=video_url)
+
+

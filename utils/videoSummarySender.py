@@ -20,10 +20,11 @@ class Publisher:
     def _establish_connection(self):
         return pika.BlockingConnection(pika.ConnectionParameters(host=self.__url,
                                                                  port=self.__port,
-                                                                 credentials=self.__cred))
+                                                                 credentials=self.__cred,
+                                                                 heartbeat=0))
 
     def send_summary(self, url, uuid):
-        video_info = yt.download_video_as_audio(url, uuid)
+        video_info = yt.download_shorts_as_audio(url, uuid)
 
         text_converted = whisper.convert_audio(video_info)
 

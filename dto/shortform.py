@@ -31,3 +31,4 @@ class ShortFormSummarized:
     keywords: list
     url: str
     summary: str
+    address: str

@@ -1,6 +1,7 @@
 import json
 import pika
 from utils import youtube_util as yt
+from utils import instagram_util as insta
 from utils.open_ai import chatGPT
 from utils.open_ai import whisper
 from dataclasses import asdict
@@ -24,7 +25,10 @@ class Publisher:
                                                                  heartbeat=0))
 
     def send_summary(self, url, uuid):
-        video_info = yt.download_shorts_as_audio(url, uuid)
+        if url.find('instagram'):
+            video_info = insta.download_reels_as_audio(url,uuid)
+        else:
+            video_info = yt.download_shorts_as_audio(url, uuid)
 
         text_converted = whisper.convert_audio(video_info)
 

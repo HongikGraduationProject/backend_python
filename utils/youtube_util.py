@@ -1,5 +1,5 @@
 from pytube import YouTube
-from dto.shorts import ShortsDownloaded
+from dto.shorts import ShortFormDownLoaded
 import os
 
 
@@ -16,7 +16,7 @@ def download_shorts_as_audio(video_url, uuid):
 
     os.rename(out_file, new_name)
 
-    return ShortsDownloaded(
+    return ShortFormDownLoaded(
         uuid=uuid,
         title=yt.title,
         description=yt.description,

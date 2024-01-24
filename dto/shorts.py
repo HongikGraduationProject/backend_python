@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class ShortsDownloaded:
+class ShortFormDownLoaded:
     uuid: str
     title: str
     description: str
@@ -12,7 +12,7 @@ class ShortsDownloaded:
 
 
 @dataclass
-class ShortsTextConverted:
+class ShortFormTextConverted:
     uuid: str
     title: str
     description: str
@@ -23,7 +23,7 @@ class ShortsTextConverted:
 
 
 @dataclass
-class ShortsSummarized:
+class ShortFormSummarized:
     uuid: str
     title: str
     description: str

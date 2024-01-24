@@ -1,6 +1,6 @@
 from env import settings
 from openai import OpenAI
-from dto.shorts import ShortFormTextConverted
+from dto.shortform import ShortFormTextConverted
 import json
 
 API_KEY = settings.API_KEYS['OPENAI']

@@ -2,7 +2,7 @@ from openai import OpenAI
 from env import settings
 from dataclasses import asdict
 from resources.static.prompts import PROMPT, SHORTS_EXAMPLE
-from dto.shorts import ShortFormSummarized
+from dto.shortform import ShortFormSummarized
 import json
 
 API_KEY = settings.API_KEYS['OPENAI']

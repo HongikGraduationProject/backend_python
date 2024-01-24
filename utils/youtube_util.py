@@ -1,5 +1,5 @@
 from pytube import YouTube
-from dto.shorts import ShortFormDownLoaded
+from dto.shortform import ShortFormDownLoaded
 import os
 
 
@@ -22,5 +22,3 @@ def download_shorts_as_audio(video_url, uuid):
         file_name=new_filename,
         keywords=yt.keywords,
         url=video_url)
-
-

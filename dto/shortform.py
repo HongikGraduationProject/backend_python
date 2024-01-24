@@ -1,14 +1,15 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import List
 
 
 @dataclass
 class ShortFormDownLoaded:
     uuid: str
-    title: str
     description: str
     file_name: str
-    keywords: list
     url: str
+    title: str = ""
+    keywords: List[str] = field(default_factory=list)
 
 
 @dataclass

@@ -25,8 +25,8 @@ class Publisher:
                                                                  heartbeat=0))
 
     def send_summary(self, url, uuid):
-        if url.find('instagram'):
-            video_info = insta.download_reels_as_audio(url,uuid)
+        if 'instagram' in url:
+            video_info = insta.download_reels_as_audio(url, uuid)
         else:
             video_info = yt.download_shorts_as_audio(url, uuid)
 

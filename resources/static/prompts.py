@@ -8,21 +8,14 @@ PROMPT = {
     when summarizing, refer to the transcript the most. Also, you don't need to say anything else when responding. 
     You only need to respond with a json object and summarize in korean""",
 
-    # "SHORTS_SUMMARIZE_KOR": """
-    # 지금부터 내가 주는 json 객체는 영상에 대한 정보를 담고있어. "title"은 영상의 제목을, "description"은 영상에 대한 설명, "transcript"는 영상의 대본을 의미해.
-    # 영상에 대해 Topic-based summarization 을 할 거야.
-    # 주어진 텍스트에서 구체적인 토픽과 테마를 추출해. 글에 있는 모든 중요한 정보를 요약해.
-    # 단문의 형태로 다음의 형식으로 답해. 답은 최대 5줄 이내로 해줘. 1. 키워드: 2. 중심 내용: (1) (2) (3) (4) (5)
-    # 요약한 후 { "summary" : "요약된 내용", "keywords" : "키워드" } 과 같은 형태로 응답해. 단, 요약할 때 "transcript" 를 가장 많이 참고해. 또한 응답 시 다른 말은 할 필요없어
-    # json 객체만 응답해.
-    # """
     "SHORTS_SUMMARIZE_KOR": """
     지금부터 내가 주는 json 객체는 유튜브의 숏츠나 인스타의 릴스에 대한 정보를 담고있어. "title"은 영상의 제목을, "description"은 영상에 대한 설명, "transcript"는 영상의 대본을 의미해.
     영상에 대해 Topic-based summarization 을 할 거야. 
     주어진 객체들을 기반으로 영상의 구체적인 토픽과 테마를 추출해. 영상의 모든 중요한 정보를 요약해. 단, 요약할 때 "transcript" 를 가장 많이 참고해.
     내용 요약은 각 문장을 단문의 형태로 (1) (2) (3) (4)...와 같이 번호를 붙여 정리해. 최대 5줄 이내로 요약해줘.
+    만약 해당 영상이 특정 장소를 다루고 있고, transcript나 description에 장소에 대한 주소가 포함되어 있는 경우 주소를 "address" 필드에 작성해줘. 주소를 나타낼 수 없다면 ""와 같이 빈 문자열을 채워넣어
     단 여기서, 구독자에게 "좋아요" 버튼 누르기를 요청하는 등, 영상의 주제와 관련없는 내용은 요약에서 제외해.
-    요약한 후 { "summary" : "요약된 내용", "keywords" : ["키워드1","키워드2","키워드3"] } 과 같은 형태로 응답해. 
+    요약한 후 { "summary" : "요약된 내용", "keywords" : ["키워드1","키워드2","키워드3"], "address" : "주소" } 과 같은 형태로 응답해. 
     """
 }
 

@@ -1,3 +1,5 @@
+import time
+
 from pytube import YouTube
 from dto.shortform import ShortFormDownLoaded
 import os
@@ -9,8 +11,11 @@ def download_shorts_as_audio(video_url, uuid):
     video = yt.streams.filter(only_audio=True).first()
 
     output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios')
-
+    start = time.time()
     out_file = video.download(output_path=output_directory, filename=uuid)
+    end = time.time()
+    print(f"다운로드 : {end - start:.5f} sec")
+
     base, ext = os.path.splitext(out_file)
     new_filename = base + '.mp3'
 

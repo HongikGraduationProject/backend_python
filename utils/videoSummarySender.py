@@ -33,7 +33,6 @@ class Publisher:
         text_converted = whisper.convert_audio(video_info)
 
         summarized_video = chatGPT.summarize_short(text_converted)
-        # print(json.dumps(asdict(summarized_video), ensure_ascii=False))
         print("uuid = " + uuid + " sent")
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],

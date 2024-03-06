@@ -1,4 +1,6 @@
 import json
+import time
+
 import pika
 from utils import youtube_util as yt
 from utils import instagram_util as insta
@@ -30,9 +32,16 @@ class Publisher:
         else:
             video_info = yt.download_shorts_as_audio(url, uuid)
 
+        start = time.time()
         text_converted = whisper.convert_audio(video_info)
+        end = time.time()
+        print(f"오디오 -> 텍스트 : {end - start:.5f} sec")
 
+        start = time.time()
         summarized_video = chatGPT.summarize_short(text_converted)
+        end = time.time()
+        print(f"텍스트 요약 : {end - start:.5f} sec")
+
         print("uuid = " + uuid + " sent")
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],

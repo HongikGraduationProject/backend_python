@@ -14,7 +14,8 @@ def download_reels_as_audio(reels_url, uuid):
                                 download_pictures=False,
                                 download_comments=False,
                                 download_video_thumbnails=False,
-                                download_geotags=False
+                                download_geotags=False,
+                                max_connection_attempts=1
                                 )
     L.load_session("hongikmu",
                    {"sessionid": settings.INSTAGRAM["SESSION_ID"],

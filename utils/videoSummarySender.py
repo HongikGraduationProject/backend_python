@@ -26,11 +26,11 @@ class Publisher:
                                                                  credentials=self.__cred,
                                                                  heartbeat=0))
 
-    def send_summary(self, url, uuid):
+    def send_summary(self, url, video_code):
         if 'instagram' in url:
-            video_info = insta.download_reels_as_audio(url, uuid)
+            video_info = insta.download_reels_as_audio(url, video_code)
         else:
-            video_info = yt.download_shorts_as_audio(url, uuid)
+            video_info = yt.download_shorts_as_audio(url, video_code)
 
         start = time.time()
         text_converted = whisper.convert_audio(video_info)
@@ -42,7 +42,7 @@ class Publisher:
         end = time.time()
         print(f"텍스트 요약 : {end - start:.5f} sec")
 
-        print("uuid = " + uuid + " sent")
+        print("video_code = " + video_code + " sent")
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],
             routing_key=MQ['SUMMARY_ROUTING_KEY'],

@@ -23,7 +23,7 @@ def summarize_short(text_converted):
     summary_json = json.loads(completion.choices[0].message.content)
     print(summary_json)
     return ShortFormSummarized(
-        uuid=text_converted.uuid,
+        video_code=text_converted.video_code,
         title=summary_json["title"],
         description=text_converted.description,
         keywords=summary_json["keywords"],

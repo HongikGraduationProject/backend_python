@@ -21,9 +21,9 @@ class Consumer:
         # url = json.loads(body.decode('utf-8'))['url']
         body_json = json.loads(body.decode('utf-8'))
         print(body_json['url'])
-        print(body_json['uuid'])
+        print(body_json['videoCode'])
         print('Received %s' % body)
-        publisher.send_summary(body_json['url'], body_json['uuid'])
+        publisher.send_summary(body_json['url'], body_json['videoCode'])
         return
 
     def main(self):

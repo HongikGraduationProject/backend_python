@@ -8,7 +8,7 @@ import time
 SHORTCODE_REGEX = r'(?:https?:\/\/)?(?:www\.)?instagram\.com\/?([a-zA-Z0-9\.\_\-]+)?\/([p]+)?([reel]+)?([tv]+)?([stories]+)?\/([a-zA-Z0-9\-\_\.]+)\/?([0-9]+)?'
 
 
-def download_reels_as_audio(reels_url, uuid):
+def download_reels_as_audio(reels_url, video_code):
     start = time.time()
     L = instaloader.Instaloader(compress_json=False,
                                 download_pictures=False,
@@ -24,7 +24,7 @@ def download_reels_as_audio(reels_url, uuid):
     print(f"로그인 : {end - start:.5f} sec")
 
     post = instaloader.Post.from_shortcode(L.context, extract_shortcode(reels_url))
-    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios', uuid)
+    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios', video_code)
     start = time.time()
     L.download_pic(url=post.video_url, filename=filename, mtime=post.date_local)
     end = time.time()
@@ -36,7 +36,7 @@ def download_reels_as_audio(reels_url, uuid):
     end = time.time()
     print(f"비디오 -> 오디오 : {end - start:.5f} sec")
     return ShortFormDownLoaded(
-        uuid=uuid,
+        video_code=video_code,
         description=post.caption,
         file_name=new_filename,
         url=reels_url

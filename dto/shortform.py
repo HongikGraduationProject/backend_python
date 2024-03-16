@@ -4,7 +4,7 @@ from typing import List
 
 @dataclass
 class ShortFormDownLoaded:
-    uuid: str
+    video_code: str
     description: str
     file_name: str
     url: str
@@ -14,7 +14,7 @@ class ShortFormDownLoaded:
 
 @dataclass
 class ShortFormTextConverted:
-    uuid: str
+    video_code: str
     title: str
     description: str
     file_name: str
@@ -25,7 +25,7 @@ class ShortFormTextConverted:
 
 @dataclass
 class ShortFormSummarized:
-    uuid: str
+    video_code: str
     title: str
     description: str
     keywords: list

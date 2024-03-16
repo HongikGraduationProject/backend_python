@@ -11,7 +11,7 @@ def convert_audio(downloaded_shorts):
     audio_file = open(downloaded_shorts.file_name, 'rb')
     transcript = client.audio.transcriptions.create(model='whisper-1', file=audio_file, response_format='text')
     return ShortFormTextConverted(
-        uuid=downloaded_shorts.uuid,
+        video_code=downloaded_shorts.video_code,
         title=downloaded_shorts.title,
         description=downloaded_shorts.description,
         file_name=downloaded_shorts.file_name,

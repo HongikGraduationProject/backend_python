@@ -30,7 +30,9 @@ class Consumer:
         conn = pika.BlockingConnection(pika.ConnectionParameters(host=self.__url,
                                                                  port=self.__port,
                                                                  credentials=self.__cred))
+
         chan = conn.channel()
+
         chan.basic_consume(
             queue=self.__queue,
             on_message_callback=Consumer.on_message,

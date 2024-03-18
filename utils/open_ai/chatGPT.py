@@ -17,11 +17,12 @@ def summarize_short(text_converted):
         response_format={"type": "json_object"},
         messages=[
             {"role": "user", "content": shorts_json},
-            {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR_TEST"]}
+            {"role": "system", "content": PROMPT["SHORTS_SUMMARIZE_KOR"]}
         ]
     )
     summary_json = json.loads(completion.choices[0].message.content)
     print(summary_json)
+    print(text_converted.video_code)
     return ShortFormSummarized(
         video_code=text_converted.video_code,
         title=summary_json["title"],

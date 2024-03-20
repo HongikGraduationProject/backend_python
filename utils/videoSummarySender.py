@@ -43,6 +43,7 @@ class Publisher:
         print(f"텍스트 요약 : {end - start:.5f} sec")
 
         print("video_code = " + video_code + " sent")
+        print(json.dumps(asdict(summarized_video), ensure_ascii=False))
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],
             routing_key=MQ['SUMMARY_ROUTING_KEY'],

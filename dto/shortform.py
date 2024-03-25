@@ -8,6 +8,7 @@ class ShortFormDownLoaded:
     description: str
     file_name: str
     url: str
+    platform: str
     title: str = ""
     keywords: List[str] = field(default_factory=list)
 
@@ -21,6 +22,7 @@ class ShortFormTextConverted:
     keywords: list
     url: str
     transcript: str
+    platform: str
 
 
 @dataclass
@@ -32,3 +34,4 @@ class ShortFormSummarized:
     url: str
     summary: str
     address: str
+    platform: str

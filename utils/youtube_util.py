@@ -5,7 +5,7 @@ from dto.shortform import ShortFormDownLoaded
 import os
 
 
-def download_shorts_as_audio(video_url, video_code):
+def download_shorts_as_audio(video_url, video_code, platform):
     yt = YouTube(str(video_url))
 
     video = yt.streams.filter(only_audio=True).first()
@@ -26,4 +26,5 @@ def download_shorts_as_audio(video_url, video_code):
         description=yt.description,
         file_name=new_filename,
         keywords=yt.keywords,
-        url=video_url)
+        url=video_url,
+        platform=platform)

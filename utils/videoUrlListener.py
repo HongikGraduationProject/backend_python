@@ -18,10 +18,9 @@ class Consumer:
     @staticmethod
     def on_message(channel, method_frame, header_frame, body):
         body_json = json.loads(body.decode('utf-8'))
-        print(body_json['url'])
-        print(body_json['videoCode'])
         print('Received %s' % body)
-        t = threading.Thread(target=publisher.send_summary, args=(body_json['url'], body_json['videoCode']))
+        t = threading.Thread(target=publisher.send_summary,
+                             args=(body_json['url'], body_json['videoCode'], body_json['platform']))
         t.start()
 
     def main(self):

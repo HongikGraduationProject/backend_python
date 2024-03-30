@@ -32,5 +32,7 @@ def summarize_short(text_converted):
         summary=summary_json["summary"],
         address=summary_json["address"],
         platform=text_converted.platform
+        address=summary_json["address"],
+        category=summary_json["category"]
     )
 

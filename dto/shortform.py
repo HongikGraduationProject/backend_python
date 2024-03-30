@@ -35,3 +35,4 @@ class ShortFormSummarized:
     summary: str
     address: str
     platform: str
+    category: str

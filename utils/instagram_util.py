@@ -7,10 +7,11 @@ from env import settings
 from datetime import datetime
 
 import time
+
 SHORTCODE_REGEX = r'(?:https?:\/\/)?(?:www\.)?instagram\.com\/?([a-zA-Z0-9\.\_\-]+)?\/([p]+)?([reel]+)?([tv]+)?([stories]+)?\/([a-zA-Z0-9\-\_\.]+)\/?([0-9]+)?'
 
 
-def download_reels_as_audio(reels_url, video_code):
+def download_reels_as_audio(reels_url, video_code, platform):
     start = time.time()
     L = instaloader.Instaloader(compress_json=False,
                                 download_pictures=False,
@@ -28,7 +29,8 @@ def download_reels_as_audio(reels_url, video_code):
     post = instaloader.Post.from_shortcode(L.context, extract_shortcode(reels_url))
 
     now = datetime.now()
-    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios', video_code+now.strftime('%Y-%m-%d_%H-%M-%S-%f'))
+    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'audios',
+                            video_code + now.strftime('%Y-%m-%d_%H-%M-%S-%f'))
     start = time.time()
     L.download_pic(url=post.video_url, filename=filename, mtime=post.date_local)
     end = time.time()
@@ -43,8 +45,8 @@ def download_reels_as_audio(reels_url, video_code):
         video_code=video_code,
         description=post.caption,
         file_name=new_filename,
-        url=reels_url
-    )
+        url=reels_url,
+        platform=platform)
 
 
 def extract_shortcode(reels_url):

@@ -30,6 +30,8 @@ def summarize_short(text_converted):
         keywords=summary_json["keywords"],
         url=text_converted.url,
         summary=summary_json["summary"],
-        address=summary_json["address"]
+        address=summary_json["address"],
+        platform=text_converted.platform,
+        category=summary_json["category"]
     )
 

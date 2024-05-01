@@ -26,11 +26,11 @@ class Publisher:
                                                                  credentials=self.__cred,
                                                                  heartbeat=0))
 
-    def send_summary(self, url, video_code):
-        if 'instagram' in url:
-            video_info = insta.download_reels_as_audio(url, video_code)
-        else:
-            video_info = yt.download_shorts_as_audio(url, video_code)
+    def send_summary(self, url, video_code, platform):
+        if platform == 'INSTAGRAM':
+            video_info = insta.download_reels_as_audio(url, video_code, platform)
+        elif platform == 'YOUTUBE':
+            video_info = yt.download_shorts_as_audio(url, video_code, platform)
 
         start = time.time()
         text_converted = whisper.convert_audio(video_info)

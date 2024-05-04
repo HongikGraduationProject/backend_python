@@ -1,5 +1,6 @@
 import json
 import time
+import log_config
 
 import pika
 from utils import youtube_util as yt
@@ -27,6 +28,8 @@ class Publisher:
                                                                  heartbeat=0))
 
     def send_summary(self, url, video_code, platform):
+        log_config.logger.info('요약 시작 : ' + url)
+
         if platform == 'INSTAGRAM':
             video_info = insta.download_reels_as_audio(url, video_code, platform)
         elif platform == 'YOUTUBE':
@@ -35,15 +38,14 @@ class Publisher:
         start = time.time()
         text_converted = whisper.convert_audio(video_info)
         end = time.time()
-        print(f"오디오 -> 텍스트 : {end - start:.5f} sec")
+        log_config.logger.info(url + f" 오디오 -> 텍스트 변환 : {end - start:.5f} sec")
 
         start = time.time()
         summarized_video = chatGPT.summarize_short(text_converted)
         end = time.time()
-        print(f"텍스트 요약 : {end - start:.5f} sec")
+        log_config.logger.info(url + f" 텍스트 요약 : {end - start:.5f} sec")
 
-        print("video_code = " + video_code + " sent")
-        print(json.dumps(asdict(summarized_video), ensure_ascii=False))
+        log_config.logger.info(url+" 메세지 큐로 전송 완료")
         self.channel.basic_publish(
             exchange=MQ['EXCHANGE_NAME'],
             routing_key=MQ['SUMMARY_ROUTING_KEY'],

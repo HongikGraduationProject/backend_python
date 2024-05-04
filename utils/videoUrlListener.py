@@ -1,5 +1,7 @@
 import json
 import threading
+
+import log_config
 from utils.videoSummarySender import Publisher
 from env import settings
 import pika
@@ -18,7 +20,7 @@ class Consumer:
     @staticmethod
     def on_message(channel, method_frame, header_frame, body):
         body_json = json.loads(body.decode('utf-8'))
-        print('Received %s' % body)
+        log_config.logger.info('메세지 큐로부터 수신 : ' + body_json['url'])
         t = threading.Thread(target=publisher.send_summary,
                              args=(body_json['url'], body_json['videoCode'], body_json['platform']))
         t.start()

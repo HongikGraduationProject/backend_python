@@ -2,15 +2,13 @@ import time
 import traceback
 from datetime import datetime
 
-from pytube import YouTube
-from pytube.innertube import _default_clients
+from pytubefix import YouTube
 from dto.shortform import ShortFormDownLoaded
 import os
 
 import log_config
 
 def download_shorts_as_audio(video_url, video_code, platform):
-    # _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
     yt = YouTube(str(video_url))
     try:
         video = yt.streams.filter(only_audio=True).first()
